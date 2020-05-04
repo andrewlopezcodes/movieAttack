@@ -33,6 +33,11 @@ const showUserTemporaryResults = document.querySelector('.results');
 const finishTypingSearchTerm = async event => {
   const movies = await fetchData(event.target.value); //this will become the searchTearm in the fetchData async callback function
 
+  if (!movies.length) {
+    searchResultsDropdown.classList.remove('is-active');
+    return;
+  }
+
   showUserTemporaryResults.innerHTML = '';
 
   searchResultsDropdown.classList.add('is-active');
