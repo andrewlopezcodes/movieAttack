@@ -14,7 +14,20 @@ const fetchData = async (searchTerm) => {
   return response.data.Search;
 }
 
+const temporarySearchDisplay = document.querySelector('.temporarysearchresultsdisplay');
+temporarySearchDisplay.innerHTML = `
+  <label><b>Search For A Movie</b></label>
+  <input type = "input" />
+  <div class = "dropdown" >
+    <div class = "dropdown-menu">
+      <div class = "dropdown-content results" ></div>
+      </div>
+    </div>
+`;
+
 const input = document.querySelector('input');
+const searchResultsDropdown = document.querySelector('.dropdown');
+const showUserTemporaryResults = document.querySelector('.results');
 
 const finishTypingSearchTerm = async event => {
   const movies = await fetchData(event.target.value); //this will become the searchTearm in the fetchData async callback function
