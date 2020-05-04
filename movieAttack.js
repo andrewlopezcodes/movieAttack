@@ -31,6 +31,9 @@ const showUserTemporaryResults = document.querySelector('.results');
 
 const finishTypingSearchTerm = async event => {
   const movies = await fetchData(event.target.value); //this will become the searchTearm in the fetchData async callback function
+
+  showUserTemporaryResults.innerHTML = '';
+
   searchResultsDropdown.classList.add('is-active');
   for (let fetchedMovies of movies) {
     const serchResultsDropdownOption = document.createElement('a');
