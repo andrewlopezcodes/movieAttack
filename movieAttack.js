@@ -29,6 +29,7 @@ const input = document.querySelector('input');
 const searchResultsDropdown = document.querySelector('.dropdown');
 const showUserTemporaryResults = document.querySelector('.results');
 
+
 const finishTypingSearchTerm = async event => {
   const movies = await fetchData(event.target.value); //this will become the searchTearm in the fetchData async callback function
 
@@ -37,9 +38,11 @@ const finishTypingSearchTerm = async event => {
   searchResultsDropdown.classList.add('is-active');
   for (let fetchedMovies of movies) {
     const serchResultsDropdownOption = document.createElement('a');
-    serchResultsDropdownOption.classList.add('dropdown-item')
+    const posterImageDecision = fetchedMovies.Poster === 'N/A' ? '' : fetchedMovies.Poster;
+
+    serchResultsDropdownOption.classList.add('dropdown-item');
     serchResultsDropdownOption.innerHTML = `
-      <img src= "${fetchedMovies.Poster} " />
+      <img src= "${posterImageDecision} " />
       <h7> ${fetchedMovies.Title}</h7>
       
     `;
