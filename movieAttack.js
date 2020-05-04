@@ -41,10 +41,10 @@ const finishTypingSearchTerm = async event => {
     const posterImageDecision = fetchedMovies.Poster === 'N/A' ? '' : fetchedMovies.Poster;
 
     serchResultsDropdownOption.classList.add('dropdown-item');
-    serchResultsDropdownOption.innerHTML = `
+    serchResultsDropdownOption.innerHTML =
+      `
       <img src= "${posterImageDecision} " />
       <h7> ${fetchedMovies.Title}</h7>
-      
     `;
     showUserTemporaryResults.appendChild(serchResultsDropdownOption);
   }
@@ -52,3 +52,9 @@ const finishTypingSearchTerm = async event => {
 
 
 input.addEventListener('input', debounce(finishTypingSearchTerm, 850));
+
+document.addEventListener('click', event => {
+  if (!temporarySearchDisplay.contains(event.target)) {
+    searchResultsDropdown.classList.remove('is-active');
+  }
+});
