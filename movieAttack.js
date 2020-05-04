@@ -14,7 +14,14 @@ const input = document.querySelector('input');
 
 const finishTypingSearchTerm = async event => {
   const movies = await fetchData(event.target.value); //this will become the searchTearm in the fetchData async callback function
-  console.log(movies);
+  for (let fetchedMovies of movies) {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <h3> ${fetchedMovies.Title}</h3>
+      <img src= "${fetchedMovies.Poster} " />
+    `;
+    document.querySelector('#target').appendChild(div);
+  }
 };
 
 
