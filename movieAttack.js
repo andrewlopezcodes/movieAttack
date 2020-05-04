@@ -42,16 +42,21 @@ const finishTypingSearchTerm = async event => {
 
   searchResultsDropdown.classList.add('is-active');
   for (let fetchedMovies of movies) {
-    const serchResultsDropdownOption = document.createElement('a');
+    const searchResultsDropdownOption = document.createElement('a');
     const posterImageDecision = fetchedMovies.Poster === 'N/A' ? '' : fetchedMovies.Poster;
 
-    serchResultsDropdownOption.classList.add('dropdown-item');
-    serchResultsDropdownOption.innerHTML =
+    searchResultsDropdownOption.classList.add('dropdown-item');
+    searchResultsDropdownOption.innerHTML =
       `
       <img src= "${posterImageDecision} " />
       <h7> ${fetchedMovies.Title}</h7>
     `;
-    showUserTemporaryResults.appendChild(serchResultsDropdownOption);
+
+    searchResultsDropdownOption.addEventListener('click', () => {
+      searchResultsDropdown.classList.remove('is-active');
+      input.value = fetchedMovies.Title;
+    });
+    showUserTemporaryResults.appendChild(searchResultsDropdownOption);
   }
 };
 
