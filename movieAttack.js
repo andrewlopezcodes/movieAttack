@@ -7,6 +7,10 @@ const fetchData = async (searchTerm) => {
       s: searchTerm
     }
   });
+
+  if (response.data.Error) {
+    return []; //if there are no movies matching the our searchTerm then we will return an empty array to allow the finishTypyingSearchTerm function to still run
+  }
   return response.data.Search;
 }
 
