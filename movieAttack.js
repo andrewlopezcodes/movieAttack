@@ -17,20 +17,8 @@ const fetchData = async (searchTerm) => {
     4) With each key press inside the input, the if statement is evaluated. On the first keystroke the if statement will evaluate to be false setting the variable setTimeoutId to the setTimeout id. On the next key stroke if there is a setTimeoutId, the if statement will evaluate true and clear the setTimeoutId.
     5) on the last keystroke in the input tag, there will be an uncleared setTimeout Id and a delay timer set to the delay argument passed in by the argments gotten from event listener. Currently 1000 miliseconds will pass into the debounce function, which will be set in the settimeout second argument of the false response of the if statement. Which means there will be a 1 second delay before the fetchData(event.target.value) will be sent to the API using the fetchData function above.
      */
+
 const input = document.querySelector('input');
-const debounce = (func, delay = 1000) => {
-  let setTimeoutId;
-  return (...args) => {
-    if (setTimeoutId) {
-      clearTimeout(setTimeoutId);
-    }
-    setTimeoutId = setTimeout(() => {
-      func.apply(null, args);
-    }, delay)
-  };
-};
-
-
 
 const finishTypingSearchTerm = event => {
   fetchData(event.target.value); //this will become the searchTearm in the fetchData async callback function
