@@ -1,5 +1,6 @@
 const createTemporarySearchResultsDisplay = ({
-  temporarySearchDisplay
+  temporarySearchDisplay,
+  renderOption
 }) => {
 
   temporarySearchDisplay.innerHTML = `
@@ -30,14 +31,10 @@ const createTemporarySearchResultsDisplay = ({
     searchResultsDropdown.classList.add('is-active');
     for (let fetchedMovies of movies) {
       const searchResultsDropdownOption = document.createElement('a');
-      const posterImageDecision = fetchedMovies.Poster === 'N/A' ? '' : fetchedMovies.Poster;
+
 
       searchResultsDropdownOption.classList.add('dropdown-item');
-      searchResultsDropdownOption.innerHTML =
-        `
-      <img src= "${posterImageDecision} " />
-      <h7> ${fetchedMovies.Title}</h7>
-    `;
+      searchResultsDropdownOption.innerHTML = searchResultsRenderOption(fetchedMovies);
 
       searchResultsDropdownOption.addEventListener('click', () => {
         searchResultsDropdown.classList.remove('is-active');

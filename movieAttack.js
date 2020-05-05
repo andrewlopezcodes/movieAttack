@@ -15,16 +15,18 @@ const fetchData = async (searchTerm) => {
 }
 
 createTemporarySearchResultsDisplay({
-  temporarySearchDisplay: document.querySelector('.temporarysearchresultsdisplay')
+  temporarySearchDisplay: document.querySelector('.temporarysearchresultsdisplay'),
+  searchResultsRenderOption(fetchedMovies) {
+    const posterImageDecision = fetchedMovies.Poster === 'N/A' ? '' : fetchedMovies.Poster;
+    return `
+    <img src= "${posterImageDecision} " />
+    <h7> ${fetchedMovies.Title} (${fetchedMovies.Year})</h7>
+
+  `;
+  }
 });
 
-createTemporarySearchResultsDisplay({
-  temporarySearchDisplay: document.querySelector('.temporarysearchresultsdisplay-two')
-});
 
-createTemporarySearchResultsDisplay({
-  temporarySearchDisplay: document.querySelector('.temporarysearchresultsdisplay-three')
-});
 
 const clickedResultInDropdown = async moviefromdropdownlist => {
   const response = await axios.get('http://www.omdbapi.com/', {
