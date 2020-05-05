@@ -74,6 +74,22 @@ const runMovieComparer = () => {
 
 
 const onScreenMovieHTMLTemplate = (singularMovieDetails) => {
+  const boxOfficeValue = parseInt(singularMovieDetails.BoxOffice.replace(/\$/g, '').replace(/,/g, ''));
+  const metascoreValue = parseInt(singularMovieDetails.Metascore);
+  const imdbRatingValue = parseFloat(singularMovieDetails.imdbRating);
+  const imdbVotesValue = parseFloat(singularMovieDetails.imdbVotes.replace(/,/g, ''));
+  let count = 0;
+
+  const awardsValue = singularMovieDetails.Awards.split(' ').reduce((prev, word) => {
+    const value = parseInt(word);
+
+    if (isNaN(value)) {
+      return prev;
+    } else {
+      return prev + value;
+    }
+  }, 0);
+
   return `
   <article class="media">
     <figure class="media-left">
@@ -89,23 +105,23 @@ const onScreenMovieHTMLTemplate = (singularMovieDetails) => {
       </div>
     </div>
   </article>
-  <article class="notification is-primary">
+  <article data-value=${awardsValue} class="notification is-primary">
   <p class="title"> ${singularMovieDetails.Awards}</p>
   <p class="subtitles">Awards</p>
   </article>
-  <article class="notification is-primary">
+  <article data-value=${boxOfficeValue} class="notification is-primary">
   <p class="title"> ${singularMovieDetails.BoxOffice}</p>
   <p class="subtitles">Box Office</p>
   </article>
-  <article class="notification is-primary">
+  <article data-value=${metascoreValue} class="notification is-primary">
   <p class="title"> ${singularMovieDetails.Metascore}</p>
   <p class="subtitles">Metascore</p>
   </article>
-  <article class="notification is-primary">
+  <article data-vallue=${imdbRatingValue} class="notification is-primary">
   <p class="title"> ${singularMovieDetails.imdbRating}</p>
   <p class="subtitles">IMDB Ratings</p>
   </article>
-  <article class="notification is-primary">
+  <article data-value=${imdbVotesValue} class="notification is-primary">
   <p class="title"> ${singularMovieDetails.imdbVotes}</p>
   <p class="subtitles">Number of Votes Attained on IMDB</p>
   </article>
