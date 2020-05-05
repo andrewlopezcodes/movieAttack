@@ -1,6 +1,9 @@
 const createTemporarySearchResultsDisplay = ({
   temporarySearchDisplay,
-  renderOption
+  searchResultsRenderOption,
+  whenClickedResultInDropdown,
+  inputValue
+
 }) => {
 
   temporarySearchDisplay.innerHTML = `
@@ -38,8 +41,9 @@ const createTemporarySearchResultsDisplay = ({
 
       searchResultsDropdownOption.addEventListener('click', () => {
         searchResultsDropdown.classList.remove('is-active');
-        input.value = fetchedMovies.Title;
-        clickedResultInDropdown(fetchedMovies);
+        input.value = inputValue(fetchedMovies);
+        whenClickedResultInDropdown(fetchedMovies);
+
       });
       showUserTemporaryResults.appendChild(searchResultsDropdownOption);
     }

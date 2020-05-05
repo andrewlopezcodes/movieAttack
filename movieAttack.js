@@ -23,6 +23,13 @@ createTemporarySearchResultsDisplay({
     <h7> ${fetchedMovies.Title} (${fetchedMovies.Year})</h7>
 
   `;
+  },
+
+  whenClickedResultInDropdown(fetchedMovies) {
+    clickedResultInDropdown(fetchedMovies);
+  },
+  inputValue(fetchedMovies) {
+    return fetchedMovies.Title;
   }
 });
 
