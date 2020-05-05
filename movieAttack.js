@@ -55,6 +55,7 @@ const finishTypingSearchTerm = async event => {
     searchResultsDropdownOption.addEventListener('click', () => {
       searchResultsDropdown.classList.remove('is-active');
       input.value = fetchedMovies.Title;
+      clickedResultInDropdown(fetchedMovies);
     });
     showUserTemporaryResults.appendChild(searchResultsDropdownOption);
   }
@@ -69,4 +70,32 @@ document.addEventListener('click', event => {
   }
 });
 
-//change
+const clickedResultInDropdown = async moviefromdropdownlist => {
+  const response = await axios.get('http://www.omdbapi.com/', {
+    params: {
+      apikey: 'a3fefea2',
+      i: moviefromdropdownlist.imdbID
+    }
+  });
+  document.querySelector('#summary').innerHTML = onScreenMovieHTMLTemplate(response.data);
+
+};
+
+const onScreenMovieHTMLTemplate = (singularMovieDetails) => {
+  return `
+  <article class="media">
+    <figure class="media-left">
+      <p class="image">
+        <img src="${singularMovieDetails.Poster}" />
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <h1>${singularMovieDetails.Title}</h1>
+        <h4>${singularMovieDetails.Genre}</h4>
+        <p>${singularMovieDetails.Plot}</p>
+      </div>
+    </div>
+  </article>
+  `
+}
