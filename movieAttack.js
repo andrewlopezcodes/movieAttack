@@ -14,6 +14,9 @@ const fetchData = async (searchTerm) => {
   return response.data.Search;
 }
 
+createAutoComplete({
+
+});
 
 const clickedResultInDropdown = async moviefromdropdownlist => {
   const response = await axios.get('http://www.omdbapi.com/', {
