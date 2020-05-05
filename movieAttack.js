@@ -97,5 +97,25 @@ const onScreenMovieHTMLTemplate = (singularMovieDetails) => {
       </div>
     </div>
   </article>
+  <article class="notification is-primary">
+  <p class="title"> ${singularMovieDetails.Awards}</p>
+  <p class="subtitles">Awards</p>
+  </article>
+  <article class="notification is-primary">
+  <p class="title"> ${singularMovieDetails.BoxOffice}</p>
+  <p class="subtitles">Box Office</p>
+  </article>
+  <article class="notification is-primary">
+  <p class="title"> ${singularMovieDetails.Metascore}</p>
+  <p class="subtitles">Metascore</p>
+  </article>
+  <article class="notification is-primary">
+  <p class="title"> ${singularMovieDetails.imdbRating}</p>
+  <p class="subtitles">IMDB Ratings</p>
+  </article>
+  <article class="notification is-primary">
+  <p class="title"> ${singularMovieDetails.imdbVotes}</p>
+  <p class="subtitles">Number of Votes Attained on IMDB</p>
+  </article>
   `
 }
