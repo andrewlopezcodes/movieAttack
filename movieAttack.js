@@ -9,10 +9,6 @@ const temporarySearchResultsDisplayConfig = {
 
   `;
   },
-
-  whenClickedResultInDropdown(fetchedMovies) {
-    clickedResultInDropdown(fetchedMovies);
-  },
   inputValue(fetchedMovies) {
     return fetchedMovies.Title;
   },
@@ -34,23 +30,31 @@ const temporarySearchResultsDisplayConfig = {
 createTemporarySearchResultsDisplay({
   ...temporarySearchResultsDisplayConfig,
   temporarySearchDisplay: document.querySelector('#left-temporarysearchresultsdisplay'),
+  whenClickedResultInDropdown(fetchedMovies) {
+    document.querySelector('.tutorial').classList.add('is-hidden');
+    clickedResultInDropdown(fetchedMovies, document.querySelector('#left-summary'));
+  },
 });
 
 createTemporarySearchResultsDisplay({
   ...temporarySearchResultsDisplayConfig,
   temporarySearchDisplay: document.querySelector('#right-temporarysearchresultsdisplay'),
+  whenClickedResultInDropdown(fetchedMovies) {
+    document.querySelector('.tutorial').classList.add('is-hidden');
+    clickedResultInDropdown(fetchedMovies, document.querySelector('#right-summary'));
+  },
 });
 
 
 
-const clickedResultInDropdown = async moviefromdropdownlist => {
+const clickedResultInDropdown = async (moviefromdropdownlist, summaryElement) => {
   const response = await axios.get('http://www.omdbapi.com/', {
     params: {
       apikey: 'a3fefea2',
       i: moviefromdropdownlist.imdbID
     }
   });
-  document.querySelector('#summary').innerHTML = onScreenMovieHTMLTemplate(response.data);
+  summaryElement.innerHTML = onScreenMovieHTMLTemplate(response.data);
 
 };
 
