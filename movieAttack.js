@@ -32,7 +32,7 @@ createTemporarySearchResultsDisplay({
   temporarySearchDisplay: document.querySelector('#left-temporarysearchresultsdisplay'),
   whenClickedResultInDropdown(fetchedMovies) {
     document.querySelector('.tutorial').classList.add('is-hidden');
-    clickedResultInDropdown(fetchedMovies, document.querySelector('#left-summary'));
+    clickedResultInDropdown(fetchedMovies, document.querySelector('#left-summary'), 'left');
   },
 });
 
@@ -41,13 +41,14 @@ createTemporarySearchResultsDisplay({
   temporarySearchDisplay: document.querySelector('#right-temporarysearchresultsdisplay'),
   whenClickedResultInDropdown(fetchedMovies) {
     document.querySelector('.tutorial').classList.add('is-hidden');
-    clickedResultInDropdown(fetchedMovies, document.querySelector('#right-summary'));
+    clickedResultInDropdown(fetchedMovies, document.querySelector('#right-summary'), 'right');
   },
 });
 
+let leftMovie;
+let rightMovie;
 
-
-const clickedResultInDropdown = async (moviefromdropdownlist, summaryElement) => {
+const clickedResultInDropdown = async (moviefromdropdownlist, summaryElement, whichSide) => {
   const response = await axios.get('http://www.omdbapi.com/', {
     params: {
       apikey: 'a3fefea2',
@@ -56,7 +57,21 @@ const clickedResultInDropdown = async (moviefromdropdownlist, summaryElement) =>
   });
   summaryElement.innerHTML = onScreenMovieHTMLTemplate(response.data);
 
+  if (whichSide === 'left') {
+    leftMovie = response.data;
+  } else {
+    rightMovie = response.data;
+  }
+
+  if (leftMovie && rightMovie) {
+    runMovieComparer();
+  }
 };
+
+const runMovieComparer = () => {
+
+};
+
 
 const onScreenMovieHTMLTemplate = (singularMovieDetails) => {
   return `
