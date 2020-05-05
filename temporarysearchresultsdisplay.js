@@ -1,6 +1,6 @@
-const createAutoComplete = ({
+const createTemporarySearchResultsDisplay = ({
   temporarySearchDisplay
-}) configureObject => {
+}) => {
 
   temporarySearchDisplay.innerHTML = `
   <label><b>Search For A Movie</b></label>

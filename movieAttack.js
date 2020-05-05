@@ -14,8 +14,16 @@ const fetchData = async (searchTerm) => {
   return response.data.Search;
 }
 
-createAutoComplete({
+createTemporarySearchResultsDisplay({
+  temporarySearchDisplay: document.querySelector('.temporarysearchresultsdisplay')
+});
 
+createTemporarySearchResultsDisplay({
+  temporarySearchDisplay: document.querySelector('.temporarysearchresultsdisplay-two')
+});
+
+createTemporarySearchResultsDisplay({
+  temporarySearchDisplay: document.querySelector('.temporarysearchresultsdisplay-three')
 });
 
 const clickedResultInDropdown = async moviefromdropdownlist => {
