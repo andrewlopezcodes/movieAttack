@@ -1,19 +1,5 @@
 /* This is the search widget */
 
-const fetchData = async (searchTerm) => {
-  const response = await axios.get('http://www.omdbapi.com/', {
-    params: {
-      apikey: 'a3fefea2',
-      s: searchTerm
-    }
-  });
-
-  if (response.data.Error) {
-    return []; //if there are no movies matching the our searchTerm then we will return an empty array to allow the finishTypyingSearchTerm function to still run
-  }
-  return response.data.Search;
-}
-
 createTemporarySearchResultsDisplay({
   temporarySearchDisplay: document.querySelector('.temporarysearchresultsdisplay'),
   searchResultsRenderOption(fetchedMovies) {
@@ -30,6 +16,19 @@ createTemporarySearchResultsDisplay({
   },
   inputValue(fetchedMovies) {
     return fetchedMovies.Title;
+  },
+  async fetchData(searchTerm) {
+    const response = await axios.get('http://www.omdbapi.com/', {
+      params: {
+        apikey: 'a3fefea2',
+        s: searchTerm
+      }
+    });
+
+    if (response.data.Error) {
+      return []; //if there are no movies matching the our searchTerm then we will return an empty array to allow the finishTypyingSearchTerm function to still run
+    }
+    return response.data.Search;
   }
 });
 

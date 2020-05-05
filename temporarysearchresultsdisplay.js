@@ -2,12 +2,13 @@ const createTemporarySearchResultsDisplay = ({
   temporarySearchDisplay,
   searchResultsRenderOption,
   whenClickedResultInDropdown,
-  inputValue
+  inputValue,
+  fetchData
 
 }) => {
 
   temporarySearchDisplay.innerHTML = `
-  <label><b>Search For A Movie</b></label>
+  <label><b>Search</b></label>
   <input type = "input" />
   <div class = "dropdown" >
     <div class = "dropdown-menu">
@@ -22,9 +23,9 @@ const createTemporarySearchResultsDisplay = ({
 
 
   const finishTypingSearchTerm = async event => {
-    const movies = await fetchData(event.target.value); //this will become the searchTearm in the fetchData async callback function
+    const items = await fetchData(event.target.value); //this will become the searchTearm in the fetchData async callback function
 
-    if (!movies.length) {
+    if (!items.length) {
       searchResultsDropdown.classList.remove('is-active');
       return;
     }
@@ -32,17 +33,17 @@ const createTemporarySearchResultsDisplay = ({
     showUserTemporaryResults.innerHTML = '';
 
     searchResultsDropdown.classList.add('is-active');
-    for (let fetchedMovies of movies) {
+    for (let item of items) {
       const searchResultsDropdownOption = document.createElement('a');
 
 
       searchResultsDropdownOption.classList.add('dropdown-item');
-      searchResultsDropdownOption.innerHTML = searchResultsRenderOption(fetchedMovies);
+      searchResultsDropdownOption.innerHTML = searchResultsRenderOption(item);
 
       searchResultsDropdownOption.addEventListener('click', () => {
         searchResultsDropdown.classList.remove('is-active');
-        input.value = inputValue(fetchedMovies);
-        whenClickedResultInDropdown(fetchedMovies);
+        input.value = inputValue(item);
+        whenClickedResultInDropdown(item);
 
       });
       showUserTemporaryResults.appendChild(searchResultsDropdownOption);
