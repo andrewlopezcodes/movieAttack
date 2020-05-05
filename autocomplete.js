@@ -1,6 +1,7 @@
-const createAutoComplete = (configureObject) => {
+const createAutoComplete = ({
+  temporarySearchDisplay
+}) configureObject => {
 
-  const temporarySearchDisplay = document.querySelector('.temporarysearchresultsdisplay');
   temporarySearchDisplay.innerHTML = `
   <label><b>Search For A Movie</b></label>
   <input type = "input" />
@@ -11,9 +12,9 @@ const createAutoComplete = (configureObject) => {
     </div>
 `;
 
-  const input = document.querySelector('input');
-  const searchResultsDropdown = document.querySelector('.dropdown');
-  const showUserTemporaryResults = document.querySelector('.results');
+  const input = temporarySearchDisplay.querySelector('input');
+  const searchResultsDropdown = temporarySearchDisplay.querySelector('.dropdown');
+  const showUserTemporaryResults = temporarySearchDisplay.querySelector('.results');
 
 
   const finishTypingSearchTerm = async event => {
