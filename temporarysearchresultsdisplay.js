@@ -9,7 +9,9 @@ const createTemporarySearchResultsDisplay = ({
 
   temporarySearchDisplay.innerHTML = `
   <label><b>Search</b></label>
+  <div>
   <input type = "input" />
+  </div>
   <div class = "dropdown" >
     <div class = "dropdown-menu">
       <div class = "dropdown-content results" ></div>

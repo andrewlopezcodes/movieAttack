@@ -1,7 +1,6 @@
 /* This is the search widget */
 
-createTemporarySearchResultsDisplay({
-  temporarySearchDisplay: document.querySelector('.temporarysearchresultsdisplay'),
+const temporarySearchResultsDisplayConfig = {
   searchResultsRenderOption(fetchedMovies) {
     const posterImageDecision = fetchedMovies.Poster === 'N/A' ? '' : fetchedMovies.Poster;
     return `
@@ -30,6 +29,16 @@ createTemporarySearchResultsDisplay({
     }
     return response.data.Search;
   }
+};
+
+createTemporarySearchResultsDisplay({
+  ...temporarySearchResultsDisplayConfig,
+  temporarySearchDisplay: document.querySelector('#left-temporarysearchresultsdisplay'),
+});
+
+createTemporarySearchResultsDisplay({
+  ...temporarySearchResultsDisplayConfig,
+  temporarySearchDisplay: document.querySelector('#right-temporarysearchresultsdisplay'),
 });
 
 
