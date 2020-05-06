@@ -69,7 +69,24 @@ const clickedResultInDropdown = async (moviefromdropdownlist, summaryElement, wh
 };
 
 const runMovieComparer = () => {
+  const leftSideStatistics = document.querySelectorAll('#left-summary .notification');
+  const rightSideStatistics = document.querySelectorAll('#right-summary .notification');
 
+  leftSideStatistics.forEach((leftStatistic, index) => {
+    const rightStatistic = rightSideStatistics[index];
+    const leftSideValue = parseInt(leftStatistic.dataset.value);
+    const rightSideValue = parseInt(rightStatistic.dataset.value);
+
+    if (rightSideValue > leftSideValue) {
+      leftStatistic.classList.remove('is-primary');
+      leftStatistic.classList.add('is-light');
+
+    } else {
+      rightStatistic.classList.remove('is-primary');
+      rightStatistic.classList.add('is-light');
+
+    }
+  });
 };
 
 
