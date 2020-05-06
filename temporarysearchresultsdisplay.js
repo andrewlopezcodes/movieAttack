@@ -64,3 +64,5 @@ const createTemporarySearchResultsDisplay = ({
 
 
 };
+
+// written by @andrewlopezcodes on Github and Instagram

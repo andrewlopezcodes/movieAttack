@@ -17,3 +17,5 @@ const debounce = (func, delay = 1000) => {
     }, delay)
   };
 };
+
+// written by @andrewlopezcodes on Github and Instagram

@@ -144,3 +144,5 @@ const onScreenMovieHTMLTemplate = (singularMovieDetails) => {
   </article>
   `
 }
+
+// written by @andrewlopezcodes on Github and Instagram
