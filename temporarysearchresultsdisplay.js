@@ -8,7 +8,7 @@ const createTemporarySearchResultsDisplay = ({
 }) => {
 
   temporarySearchDisplay.innerHTML = `
-  <label><b>Search</b></label>
+  <label><b>Search For A Movie</b></label>
   <div>
   <input type = "input" />
   </div>

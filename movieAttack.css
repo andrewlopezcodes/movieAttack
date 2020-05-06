@@ -4,6 +4,10 @@
   margin: auto;
 }
 
+.hero-body {
+  text-align: center;
+}
+
 figure.image {
   display: flex;
   justify-content: center;
