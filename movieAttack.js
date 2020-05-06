@@ -13,7 +13,7 @@ const temporarySearchResultsDisplayConfig = {
     return fetchedMovies.Title;
   },
   async fetchData(searchTerm) {
-    const response = await axios.get('http://www.omdbapi.com/', {
+    const response = await axios.get('https://www.omdbapi.com/', {
       params: {
         apikey: 'a3fefea2',
         s: searchTerm
@@ -49,7 +49,7 @@ let leftMovie;
 let rightMovie;
 
 const clickedResultInDropdown = async (moviefromdropdownlist, summaryElement, whichSide) => {
-  const response = await axios.get('http://www.omdbapi.com/', {
+  const response = await axios.get('https://www.omdbapi.com/', {
     params: {
       apikey: 'a3fefea2',
       i: moviefromdropdownlist.imdbID
